@@ -78,19 +78,85 @@ def parsing ():
 
     return None
 
+#lamda function can call other function => awesome: key= lambda k: upperKey(k['process']))
+# def upperKey(s):
+#     print("call upperKey")
+#     return s.upper()
+
+#Ref: https://docs.python.org/3/library/stdtypes.html#str.split
+def waysGetInputs():
+    n = int(input("Input the size n:"))
+    line = str(input("Input the array: "))
+    parseLine = list(map(int,line.split()))
+    #arr = list(map(int, input().rstrip().split())) #strip off right trailing spaces
+
+    print(parseLine)
+    print(type(parseLine[1]))
+    return None
+
+# class dict(**kwarg) # **kwarg is: keyworded arguments: = dict {"arg1": value1, "arg2":val2, ..}
+# class dict(mapping, **kwarg)
+# class dict(iterable, **kwarg)
+'''Return a new dictionary initialized from an optional positional argument 
+and a possibly empty set of keyword arguments.
+If no positional argument is given, an empty dictionary is created. 
+If a positional argument is given and it is a mapping object, a dictionary is created
+with the same key-value pairs as the mapping object. Otherwise, the positional 
+argument must be an iterable object. Each item in the iterable must itself 
+be an iterable with exactly two objects. The first object of each item becomes a key 
+in the new dictionary, and the second object the corresponding value. If a key occurs more 
+than once, the last value for that key becomes the corresponding value in the new dictionary'''
+#https://docs.python.org/3/tutorial/datastructures.html
+def waysWithDict():
+    dict1 = dict(one=1, two=2, three=3)
+    dict1 = dict({'one':1, 'two': 2}, three=3)
+    dict1 = dict([('one',1), ('two',2)], three=3)
+    dict1 = {'one':1, 'two':2, 'three': 3} #only with mappings obj
+    dict1 = {k:v for k,v in [('one',1), ('two',2), ('three',3)]} # the inside return mapping obj
+    #comprehension forms: {k:v for k,v in iterable}, v could be f(k)
+    dict1 = {k:k*2 for k in range(3)}
+    dict1 = {k:v for k,v in enumerate(range(3))}
+    #using map function, map will generate a mapping obj to dict() constructor
+    dict1 = dict(map(lambda x: (x,x*2), range(3))) #lamda must return iter with 2 objects
+    print(dict1)
+
+    return None
+
+#ways withList
+#https://docs.python.org/3/tutorial/datastructures.html
+# [[row[i] for row in matrix] for i in range(4)] => transpose the row with column
+# list(zip(*matrix)) ?? #zip(*iterables) : *iterables mean one or more iterables
+#https://docs.python.org/3/library/functions.html#zip
 
 
+#unresolved questions
+#python generate list of variables??
+
+
+#lambda: https://docs.python.org/3/reference/expressions.html#lambda
+'''
+lambda_expr        ::=  "lambda" [parameter_list] ":" expression
+lambda_expr_nocond ::=  "lambda" [parameter_list] ":" expression_nocond
+Lambda expressions (sometimes called lambda forms) are used to create anonymous functions. 
+The expression lambda parameters: expression yields a function object. 
+The unnamed object behaves like a function object defined with:
+def <lambda>(parameters):
+    return expression
+'''
 
 if __name__ == '__main__':
     #makeSampleHTTPRequest("https://docs.python.org")
     #makeHTTPconnection("docs.python.org")
-    parsing()
+    #parsing()
+    #waysGetInputs()
+    waysWithDict()
 
 
 
 ''' Puzzles
 You need to distribute a terabyte of data from a single server to 10,000 nodes, 
-and then keep that data up to date. 
+and then keep that data up to date. #using the torrent ideas: point to point, spawns 2 then 2^2, 
+...until all copies, write scripts number the server and do it.
 It takes several hours to copy the data just to one server. 
 How would you do this so that it didn't take 20,000 hours 
 to update all the servers? Also, how would you make sure that the file wasn't 
@@ -104,4 +170,13 @@ The coding round is easy. 5 questions. One had to be done by recursion, others w
 2 conceptual/design interviews. Many questions on systems knowledge ( networks, OS, linux, ssl, etc). To prepare: read the networks: top down approach book. For linux, do unix and linux sys admins handbook. 
 For system design, google "system design primer". Its a github link.
 How HTTPS works  
+'''
+
+'''
+f,b="Fizz","Buzz"
+for i in range(1,101):
+    s=(f+b if i%5==0 else f) if i%3==0 else (b if i%5==0 else i)
+    print(s)
+
+for i in range(1,101): print (max(str(i),''+(i%3==0)*'Fizz'+(i%5==0)*'Buzz'))
 '''
