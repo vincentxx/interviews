@@ -1,13 +1,63 @@
 ##http request
 import urllib.request
+import urllib.parse
 import http.client
+import html.parser
+#from html.parser import HTMLParser
 import re
 
+'''
+Note that urlopen returns a bytes object. This is because there is no way for urlopen to 
+automatically determine the encoding of the byte stream it receives from the HTTP server. 
+In general, a program will decode the returned bytes object to string once it determines 
+or guesses the appropriate encoding.
+https://docs.python.org/3.6/library/urllib.parse.html#module-urllib.parse
+https://docs.python.org/3.6/library/urllib.request.html#urllib-examples
+#https://docs.python.org/3.6/howto/urllib2.html#urllib-howto
+'''
 def makeSampleHTTPRequest(url): #non-real time
-    resp = urllib.request.urlopen(url)
-    print(resp.read())
+    #resp = urllib.request.urlopen(url)
+    #print(resp.read())
+
+    #practice with parsing an URL
+    link = "https://docs.python.org/3.6/library/urllib.parse.html#module-urllib.parse"
+    urlTuple = urllib.parse.urlparse(link)
+    #print(urlTuple)
+
+    #make a POST request to search for "vincent"
+    link= "https://pythonprogramming.net/search"
+    #build the values of the data: this case the query value
+    #urllib.parse.urlencode will get an dict of key/values or sequence of tuple-2 (k,v)
+    #  as input to encode it to url format
+    #The resulting string is a series of key=value pairs separated by '&' characters,
+    # where both key and value are quoted using the quote_via function
+    #then convert url format to byte or the type of server encode accepted
+    values = {'q': 'robot'}
+    data = urllib.parse.urlencode(values)
+    data = data.encode('utf-8') #bytes now, depending on server's accepting encode
+    #make a Request obj
+    req = urllib.request.Request(link,data,method='POST')
+    with urllib.request.urlopen(req) as resp: #get response obj, catching exception
+        parser = MyHTMLParser()
+        text = resp.read()
+        #parser.feed('<html><head><title>Test</title></head> <body><h1>Parse me!</h1></body></html>')
+        parser.feed(text.decode())
+        #print(pars)
+        #print(resp.read())
 
     return None
+
+#need to study basic Python classes & inheritance
+class MyHTMLParser(html.parser.HTMLParser):
+    def handle_starttag(self, tag, attrs):
+        if tag == 'body':
+            print("start tag: ", tag)
+
+    def handle_data(self, data):
+        print(data.strip())
+    def handle_endtag(self, tag):
+        if tag == 'body':
+            print("end tag:", tag)
 
 def makeHTTPconnection(url): #realtime connection
     con = http.client.HTTPSConnection(url)
@@ -145,11 +195,11 @@ def <lambda>(parameters):
 '''
 
 if __name__ == '__main__':
-    #makeSampleHTTPRequest("https://docs.python.org")
+    makeSampleHTTPRequest("https://docs.python.org")
     #makeHTTPconnection("docs.python.org")
     #parsing()
     #waysGetInputs()
-    waysWithDict()
+    #waysWithDict()
 
 
 
