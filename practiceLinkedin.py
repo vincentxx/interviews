@@ -1,4 +1,6 @@
-##http request
+#!/usr/bin/env python3
+##Site Reliability Engineer - Entry level
+##http request, filesystem processing, algorithm + data structure
 import urllib.request
 import urllib.parse
 import http.client
@@ -193,13 +195,63 @@ The unnamed object behaves like a function object defined with:
 def <lambda>(parameters):
     return expression
 '''
+import fileinput #this package has interface to get stdin or multiples files
+#usage: this_script_itself < testFile1 testFile2  (also work with pipeline )
+def getInput():
+    with fileinput.input() as fin:
+        #print(fin.filename())
+        for line in fin:
+            print(line)
+
+    return None
+
+import getpass
+def getRuntimePassword():  #must test it on running script on terminal, not on pycharm for hidden pass
+    user = input("Username: ")
+    password = getpass.getpass(prompt="Password(hidden): ") #this module run with hidden password prompt on Unix
+    print(password)
+    pass #do something with username,password
+    return None
+
+import os
+import shutil
+import subprocess
+import logging
+def sampleAdminTasks():
+    fileName = 'fileTest1'
+    if not os.path.exists(fileName):    #check if filepath is valid
+        with open(fileName, "wt") as f:
+            for i in range(10):
+                f.write("line " + str(i) + "\n")
+    shutil.copy(fileName, 'fileTest1Copy') #using copy file by shell
+    #shutil.copytree(src,dest)
+    print (os.stat(fileName)) #print file statistic
+    subprocess.run(['ls', '-l']) #run a command on shell
+    p = subprocess.Popen(['wc'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    out = p.communicate(b"this is vincent") #only accept byte stream
+    print ("out: ", out)
+    logging.basicConfig(
+        filename = 'sampleAdminTask.log',
+        level = logging.INFO,
+        format= '%(asctime)s: %(levelname)s: %(message)s'
+    )
+    logging.error("this is error level")
+    logging.critical("this is critical msg ")
+    subprocess.run(["cat",'sampleAdminTask.log'])
+    subprocess.run(['rm', '-f', 'sampleAdminTask.log'])
+    return None
 
 if __name__ == '__main__':
-    makeSampleHTTPRequest("https://docs.python.org")
+    #makeSampleHTTPRequest("https://docs.python.org")
     #makeHTTPconnection("docs.python.org")
     #parsing()
     #waysGetInputs()
     #waysWithDict()
+    #getInput()
+    #getRuntimePassword()
+    sampleAdminTasks()
+    pass
+
 
 
 
