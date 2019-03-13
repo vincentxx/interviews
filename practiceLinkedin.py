@@ -86,7 +86,7 @@ def parsing ():
     date = r"(?P<date>\w+\s\w+)"
     print(date)
     time = r"(?P<time>\d+:\d+:\d+)"
-    hostname = r"(?P<hostname>\w+)"
+    hostname = r"(?P<hostname>\S+)"
     process = r"(?P<process>\w+)"
     message = r"(?P<message>[\w\W]*)" #all the remaining of line
     spaces = r"\s*"
