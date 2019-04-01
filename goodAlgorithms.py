@@ -9,6 +9,8 @@ def longestCommonSubsequence (list1, list2):
     dp = [[0] * m for i in range(n)] #matrix [n,m]
     answer = int(0) #the length of common sub sequence
     endPosition = -1
+    #using DP, init dp[0,i] and dp[j,0] as 0
+    #dp[i,j] = { }
     for i in range(n):
         for j in range(m):
             if list1[i] == list2[j]:
@@ -19,12 +21,15 @@ def longestCommonSubsequence (list1, list2):
                     answer = dp[i][j]
                     endPosition = i;
     #find the string
-    commonString = ""
-    if (answer > 0):
-        for i in range(answer):
-            commonString += str(list1[endPosition - answer + i +1])
+    # commonString = ""
+    # if (answer > 0):
+    #     for i in range(answer):
+    #         commonString += str(list1[endPosition - answer + i +1])
 
-    return str(answer) + " : " + commonString
+    #do this by slice
+    commonString = list1[endPosition - answer +1: endPosition + 1]
+
+    return str(answer) + " : " + ''.join(commonString)
 
 
 #find common longest NOT CONTINOUS BUT IN ORDER sub sequence between the two such as strings, arrays, lists, etc. by using DP
@@ -97,12 +102,12 @@ if __name__ == '__main__':
     # print(array2D[0][1])
     #print(array2D)
 
-    list0 = [0] * 15
-    print(list0)
+    # list0 = [0] * 15
+    # print(list0)
 
-    #list1 = list ("vincentxagohago")
-    #list2 = list("voneentxagoiuvis")
-    #print(longestCommonSubsequence(list1,list2))
+    list1 = list ("vincentxagohago")
+    list2 = list("voneentxagoiuvis")
+    print(longestCommonSubsequence(list1,list2))
 
     #dict1 = { (1,2): [2], (2,3): [4]}
     #print(dict1)
@@ -112,7 +117,7 @@ if __name__ == '__main__':
 
     #arr = [1,2,3,19, 14, 4,5,6,7,8,9,11, 12, 17, 21, 23,34 ]
     #print(findSumN(arr,33))
-    print(kattisExactchange2())
+    # print(kattisExactchange2())
 
 
 ######################################################################### What i have done
@@ -206,3 +211,16 @@ class Solution2:
                         answerList.append(prevMax)
 
         return answerList
+
+#https://www.techiedelight.com/list-of-problems/
+#Arrays
+#sort or partitioning 0, 1
+#partitioning 0,1,2
+#find Max length sub array(continuous) with given sum
+#find duplicate with range n (using mod % n)
+#Find maximum product of two integers in an array: sorted, then answer = either 2 max or 2 bottom negative
+#
+
+#binary tree, data structure
+
+
