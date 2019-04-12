@@ -282,3 +282,4 @@ for i in range(1,101):
 
 for i in range(1,101): print (max(str(i),''+(i%3==0)*'Fizz'+(i%5==0)*'Buzz'))
 '''
+
