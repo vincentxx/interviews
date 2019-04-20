@@ -95,7 +95,7 @@ def kattisExactchange2():
     return str(payValue) + " " + str(minNumCoins)
 
 # Main()
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
     #array2D = [[[]] * 10 for i in range(5)]
     # array2D[0][1] = 100
@@ -104,10 +104,10 @@ if __name__ == '__main__':
 
     # list0 = [0] * 15
     # print(list0)
-
-    list1 = list ("vincentxagohago")
-    list2 = list("voneentxagoiuvis")
-    print(longestCommonSubsequence(list1,list2))
+    #
+    # list1 = list ("vincentxagohago")
+    # list2 = list("voneentxagoiuvis")
+    # print(longestCommonSubsequence(list1,list2))
 
     #dict1 = { (1,2): [2], (2,3): [4]}
     #print(dict1)
@@ -224,3 +224,15 @@ class Solution2:
 #binary tree, data structure
 
 
+#way to think about the funciton as data, the code as data: VERY USEFUL IF WRAP UP SOMEBODY's CODE (FUNCTIONS)
+def func1(x):
+    def func2(y):
+        return (x+y)
+    return func2
+#
+
+myfunc = func1(1)
+myfunc(2) # is 1+2 = 3
+
+def binop(x,y,func):
+    return func(x,y)
