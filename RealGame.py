@@ -120,8 +120,11 @@ Jan 20 05:22,6
 ---------- end sample output ------------ 
 '''
 
+with open(fileName, "r") as f :
+    for line in f:
+        s = line.split(' ', 3)
+        date = s[0] + ' ' +  s[1] + ' '
 import re
-
 
 def parsing():
     fileName = '/var/log/message'

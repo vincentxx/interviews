@@ -237,19 +237,19 @@ def sampleAdminTasks():
     )
     logging.error("this is error level")
     logging.critical("this is critical msg ")
-    subprocess.run(["cat",'sampleAdminTask.log'])
+    subprocess.run(["cat", 'sampleAdminTask.log'])
     subprocess.run(['rm', '-f', 'sampleAdminTask.log'])
     return None
 
 if __name__ == '__main__':
     #makeSampleHTTPRequest("https://docs.python.org")
-    #makeHTTPconnection("docs.python.org")
+    makeHTTPconnection("docs.python.org")
     #parsing()
     #waysGetInputs()
     #waysWithDict()
     #getInput()
     #getRuntimePassword()
-    sampleAdminTasks()
+    #sampleAdminTasks()
     pass
 
 
