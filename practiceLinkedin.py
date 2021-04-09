@@ -127,7 +127,6 @@ def parsing ():
     #     print(i)
 
     #if you have a matrix, so how to sort it by each keys fast in python
-
     return None
 
 #lamda function can call other function => awesome: key= lambda k: upperKey(k['process']))
@@ -171,6 +170,7 @@ def waysWithDict():
     #using map function, map will generate a mapping obj to dict() constructor
     dict1 = dict(map(lambda x: (x,x*2), range(3))) #lamda must return iter with 2 objects
     print(dict1)
+    test = map([1, 2, 3], ['a', 'b', 'c'])
 
     return None
 
@@ -251,6 +251,8 @@ if __name__ == '__main__':
     #getRuntimePassword()
     #sampleAdminTasks()
     pass
+
+
 
 
 

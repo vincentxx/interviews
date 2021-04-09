@@ -1,7 +1,6 @@
 from typing import List, Dict
 
 #s = [1,2,3,4,5]
-
 def print10000():
     f10,f15,f55 = True, False, False
     c55 = 0
@@ -510,8 +509,6 @@ https://www.quora.com/How-should-I-prepare-for-a-production-engineer-interview-a
 
 
 """
-
-
 def subsets(nums):
     nums.sort()
     result = [[]]
